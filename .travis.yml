@@ -1,0 +1,15 @@
+language: python
+python:
+- '3.6'
+- pypy
+script: echo skip test
+deploy:
+  skip_existing: true
+  provider: pypi
+  user: codeskyblue
+  password:
+    secure: A14Qm25FP6+r/GcjcQeTRkmt/7T2CogtKIhW0I2eaKTGvc9dxaeaZE13KoiKQ94kgI+pTHXJ0xvwf3ylEOMFxyi2Fd8m79sflm4AivhNhVkZPbV3Aeo5rIkTJNVN2L2k9atRf706l9xZ1E8dh7EcaUUH5aI38xU4JcqWvs4sQr34TDOjOBvX5QZID97fP6cNS9rzQf3I63/+8EyYG516CtCCSpB9b4d3eV77aSE7gf77h4bbJuXlWG0NZethq5iqPetP0ESM6+SFKOTwJGTSNaLHkdEdpIEyNa7+MdhjiNnu1VfDCcZeFO9fSv5o1JtuPqaSPRIoq4DH49tUSkvg6m0hy+GVgjCk1345JXH0hbGG1Spo0MoUd9m0yimRH1am6Ot5EwB/JGl2HX46E3V0CiMkBU+y7RnbVnDHLuIe9HyazAAWA6H1cJXprl4+iMOe4eRfynBTufJdYiFoUJsiY3rNBzGcFMiKAalOK/krE4mIq+6oOJor6/TmEpJSIHrU7q0XR0N09iSpqOsZQf2qoMaRpCrxPaXNayzAf5cA4rYEddq3YcR1B5uvlf3G7kG8sX4LrLLOYoGliL7hoT2846yIhvsLeVlLaYfZnjYdeOuLunuthLLiskLC1uMxy4ydp9eQPxam5rumqiuKhbRWY1BcxoBgOO2HLPa3WCSWITQ=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: openatx/atxserver2-python-client
