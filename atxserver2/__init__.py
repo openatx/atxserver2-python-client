@@ -33,13 +33,18 @@ class Client():
         """
         return self._request("/api/v1/user")
 
-    def list_device(self, platform=None, usable: bool = True) -> list:
+    def list_device(self, platform=None, present:bool=True, usable:bool=None) -> list:
         """
         Returns:
             list
         """
-        data = self._request("/api/v1/devices",
-                             params={"usable": "true" if usable else "false"})
+        params = {}
+        if usable:
+            params["usable"] = str(usable).lower()
+        if present:
+            params["present"] = str(present).lower()
+
+        data = self._request("/api/v1/devices", params=params)
         devices = []
         for info in data['devices']:
             udid = info['udid']
