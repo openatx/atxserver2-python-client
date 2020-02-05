@@ -24,3 +24,14 @@ def test_list_device(client: atxserver2.Client):
         print(d.atx_agent_address)
         print(d.remote_connect_address)
         d.release()
+
+
+def test_aquire_device(client: atxserver2.Client):
+    for d in client.list_device():
+        d.acquire(6000)
+        info = d.info
+        d.release()
+        assert info['idleTimeout'] == 6000
+        assert info['using'] == True
+        break
+
