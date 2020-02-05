@@ -67,7 +67,7 @@ class Device():
         try:
             ret = self._client._request("/api/v1/user/devices",
                                         method="post",
-                                        json={"udid": self._udid})
+                                        json={"udid": self._udid, "idleTimeout": idle_timeout})
             assert ret['success']
             resp = self._client._request("/api/v1/user/devices/" + self._udid)
             self._info = resp['device']
