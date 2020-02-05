@@ -27,6 +27,7 @@ def test_list_device(client: atxserver2.Client):
 
 
 def test_aquire_device(client: atxserver2.Client):
+    assert len(client.list_device()) > 0, "test prepare is not ready, device list is empty"
     for d in client.list_device():
         d.acquire(6000)
         info = d.info
@@ -35,3 +36,4 @@ def test_aquire_device(client: atxserver2.Client):
         assert info['using'] == True
         break
 
+    
