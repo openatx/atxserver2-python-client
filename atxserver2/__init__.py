@@ -59,7 +59,7 @@ class Device():
         self._udid = udid
         self._info = info
 
-    def acquire(self, idle_timeout: float = 6000.0):
+    def acquire(self, idle_timeout: float = 6000.0, email: str = None):
         """
         Args:
             idle_timeout: device maxium using seconds
@@ -67,7 +67,7 @@ class Device():
         try:
             ret = self._client._request("/api/v1/user/devices",
                                         method="post",
-                                        json={"udid": self._udid, "idleTimeout": idle_timeout})
+                                        json={"udid": self._udid, "idleTimeout": idle_timeout, "email": email})
             assert ret['success']
             resp = self._client._request("/api/v1/user/devices/" + self._udid)
             self._info = resp['device']

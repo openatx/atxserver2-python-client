@@ -8,7 +8,7 @@ import atxserver2
 @pytest.fixture
 def client():
     return atxserver2.Client("http://localhost:4000",
-                             "97076434bbbe4dcfb176715e3cad766f")
+                             "8b996e7e2958491cb2b1d88823883043")
 
 
 def test_user(client: atxserver2.Client):
@@ -29,11 +29,13 @@ def test_list_device(client: atxserver2.Client):
 def test_aquire_device(client: atxserver2.Client):
     assert len(client.list_device()) > 0, "test prepare is not ready, device list is empty"
     for d in client.list_device():
-        d.acquire(6000)
+        d.acquire(6000, "test")
         info = d.info
         d.release()
+        print(info)
         assert info['idleTimeout'] == 6000
         assert info['using'] == True
+        assert info['userId'] == "test"
         break
 
     
