@@ -15,7 +15,12 @@ class Client():
         self._token = token
 
     def _request(self, uri: str, method='get', **kwargs):
+        """
+        Default set timeout to 10
+        """
         kwargs['headers'] = {"Authorization": "Bearer " + self._token}
+        if 'timeout' not in kwargs:
+            kwargs['timeout'] = 10
         url = self._server_url.rstrip("/") + "/" + uri.lstrip("/")
         r = requests.request(method, url, **kwargs)
         r.raise_for_status()
